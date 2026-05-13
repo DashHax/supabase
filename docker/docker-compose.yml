@@ -142,7 +142,7 @@ services:
       interval: 5s
       retries: 3
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -265,7 +265,7 @@ services:
     image: postgrest/postgrest:v14.8
     restart: unless-stopped
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -294,7 +294,7 @@ services:
     image: supabase/realtime:v2.76.5
     restart: unless-stopped
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     healthcheck:
@@ -340,7 +340,7 @@ services:
     image: supabase/storage-api:v1.48.26
     restart: unless-stopped
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
       rest:
@@ -426,7 +426,7 @@ services:
     image: supabase/postgres-meta:v0.96.3
     restart: unless-stopped
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -492,7 +492,7 @@ services:
       interval: 5s
       retries: 10
     depends_on:
-      db:
+      
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -519,7 +519,7 @@ services:
   # Comment out everything below this point if you are using an external Postgres database
   db:
     container_name: supabase-db
-    image: supabase/postgres:15.8.1.085
+    image: supabase/postgres:17.4.1.078
     restart: unless-stopped
     volumes:
       - ./volumes/db/realtime.sql:/docker-entrypoint-initdb.d/migrations/99-realtime.sql:Z
@@ -530,7 +530,7 @@ services:
       # Initialize the database settings with JWT_SECRET and JWT_EXP
       - ./volumes/db/jwt.sql:/docker-entrypoint-initdb.d/init-scripts/99-jwt.sql:Z
       # PGDATA directory is persisted between restarts
-      - ./volumes/db/data:/var/lib/postgresql/data:Z
+      - ./volumes/db/data-v2:/var/lib/postgresql/data:Z
       # Changes required for internal supabase data such as _analytics
       - ./volumes/db/_supabase.sql:/docker-entrypoint-initdb.d/migrations/97-_supabase.sql:Z
       # Changes required for Analytics support
