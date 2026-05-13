@@ -142,7 +142,7 @@ services:
       interval: 5s
       retries: 3
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -265,7 +265,7 @@ services:
     image: postgrest/postgrest:v14.8
     restart: unless-stopped
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -294,7 +294,7 @@ services:
     image: supabase/realtime:v2.76.5
     restart: unless-stopped
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     healthcheck:
@@ -340,7 +340,7 @@ services:
     image: supabase/storage-api:v1.48.26
     restart: unless-stopped
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
       rest:
@@ -426,7 +426,7 @@ services:
     image: supabase/postgres-meta:v0.96.3
     restart: unless-stopped
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
@@ -492,7 +492,7 @@ services:
       interval: 5s
       retries: 10
     depends_on:
-      
+      db:
         # Disable this if you are using an external Postgres database
         condition: service_healthy
     environment:
